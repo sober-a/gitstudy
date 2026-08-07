@@ -1,0 +1,622 @@
+#include "map.h"
+
+void initMapData01() {
+					//关卡初始化
+					// 初始化关卡
+					// 第1关：草地
+					TileData level0Tiles[] = {
+						{2,2,GRASS_WALL}, {5,3,GRASS_WALL}, {8,4,GRASS_WALL}, {8,5,GRASS_WALL},
+						{10,4,GRASS_WALL}, {4,2,GRASS_WALL}, {6,6,GRASS_WALL}, {8,12,GRASS_WALL},
+						{4,8,GRASS_WALL}, {10,8,GRASS_WALL}, {2,9,GRASS_WALL}, {3,11,GRASS_WALL},
+						{7,13,GRASS_WALL}, {12,10,GRASS_WALL}, {8,15,GRASS_WALL}, {12,14,GRASS_WALL},
+						{10,16,GRASS_WALL}, {6,17,GRASS_WALL}, {5,19,GRASS_WALL}, {2,21,GRASS_WALL},
+						{13,18,GRASS_WALL},
+						{3,1,GRASS_FOREST}, {4,1,GRASS_FOREST}, {5,1,GRASS_FOREST}, {6,1,GRASS_FOREST},
+						{3,2,GRASS_FOREST}, {5,2,GRASS_FOREST}, {6,2,GRASS_FOREST}, {6,3,GRASS_FOREST},
+						{9,6,GRASS_FOREST}, {10,6,GRASS_FOREST}, {11,6,GRASS_FOREST}, {12,6,GRASS_FOREST},
+						{10,5,GRASS_FOREST}, {11,5,GRASS_FOREST}, {12,5,GRASS_FOREST}, {13,5,GRASS_FOREST},
+						{12,4,GRASS_FOREST}, {13,4,GRASS_FOREST}, {3,12,GRASS_FOREST}, {3,13,GRASS_FOREST},
+						{3,14,GRASS_FOREST}, {3,15,GRASS_FOREST}, {3,16,GRASS_FOREST}, {4,13,GRASS_FOREST},
+						{4,14,GRASS_FOREST}, {4,15,GRASS_FOREST}, {5,14,GRASS_FOREST}, {8,20,GRASS_FOREST},
+						{8,21,GRASS_FOREST}, {8,22,GRASS_FOREST}, {9,20,GRASS_FOREST}, {9,21,GRASS_FOREST},
+						{9,22,GRASS_FOREST}, {10,20,GRASS_FOREST}, {10,21,GRASS_FOREST}, {10,22,GRASS_FOREST},
+						{11,20,GRASS_FOREST}, {11,21,GRASS_FOREST}, {11,22,GRASS_FOREST}
+					};
+					initLevel(0, level0Tiles, sizeof(level0Tiles) / sizeof(TileData));
+
+					int enemy0[10][2] = { {1,0}, {7,0}, {11,0}, {18,0}, {1,10}, {1,14}, {8,15}, {10,15}, {23,14}, {20,14} };
+					for (int i = 0; i < 10; i++) {
+						enemiesSpawn[0][i][0] = enemy0[i][0];
+						enemiesSpawn[0][i][1] = enemy0[i][1];
+					}
+					playerSpawn[0][0][0] = 7;
+					playerSpawn[0][0][1] = 6;
+
+					// 第2关：沙漠
+					TileData level1Tiles[] = {
+						{3,5,DESERT_PYRAMID}, {3,14,DESERT_PYRAMID}, {4,13,DESERT_PYRAMID}, {4,14,DESERT_PYRAMID},
+						{4,23,DESERT_PYRAMID}, {4,24,DESERT_PYRAMID}, {5,5,DESERT_PYRAMID}, {5,13,DESERT_PYRAMID},
+						{6,14,DESERT_PYRAMID}, {7,10,DESERT_PYRAMID}, {7,19,DESERT_PYRAMID}, {7,20,DESERT_PYRAMID},
+						{9,23,DESERT_PYRAMID}, {9,24,DESERT_PYRAMID}, {10,1,DESERT_PYRAMID}, {10,5,DESERT_PYRAMID},
+						{10,13,DESERT_PYRAMID}, {11,1,DESERT_PYRAMID}, {11,13,DESERT_PYRAMID}, {11,23,DESERT_PYRAMID},
+						{13,5,DESERT_PYRAMID}, {14,6,DESERT_PYRAMID}, {16,10,DESERT_PYRAMID}, {16,19,DESERT_PYRAMID},
+						{16,23,DESERT_PYRAMID},
+						{3,6,DESERT_BRICK}, {3,13,DESERT_BRICK}, {3,19,DESERT_BRICK}, {3,20,DESERT_BRICK},
+						{3,23,DESERT_BRICK}, {3,24,DESERT_BRICK}, {4,5,DESERT_BRICK}, {4,6,DESERT_BRICK},
+						{5,6,DESERT_BRICK}, {5,14,DESERT_BRICK}, {5,23,DESERT_BRICK}, {5,24,DESERT_BRICK},
+						{5,26,DESERT_BRICK}, {6,1,DESERT_BRICK}, {6,9,DESERT_BRICK}, {6,10,DESERT_BRICK},
+						{6,13,DESERT_BRICK}, {6,19,DESERT_BRICK}, {6,20,DESERT_BRICK}, {6,26,DESERT_BRICK},
+						{7,9,DESERT_BRICK}, {9,5,DESERT_BRICK}, {9,6,DESERT_BRICK}, {10,6,DESERT_BRICK},
+						{10,14,DESERT_BRICK}, {10,19,DESERT_BRICK}, {10,20,DESERT_BRICK}, {10,23,DESERT_BRICK},
+						{10,24,DESERT_BRICK}, {11,14,DESERT_BRICK}, {11,19,DESERT_BRICK}, {11,20,DESERT_BRICK},
+						{11,24,DESERT_BRICK}, {12,9,DESERT_BRICK}, {12,10,DESERT_BRICK}, {16,9,DESERT_BRICK},
+						{16,20,DESERT_BRICK}, {16,24,DESERT_BRICK}, {13,6,DESERT_BRICK}, {13,9,DESERT_BRICK},
+						{13,10,DESERT_BRICK}, {14,5,DESERT_BRICK}
+					};
+					initLevel(1, level1Tiles, sizeof(level1Tiles) / sizeof(TileData));
+
+					int enemy1[10][2] = { {4,0}, {8,2}, {8,8}, {15,0}, {19,4}, {25,3}, {25,9}, {15,10}, {21,15}, {9,10} };
+					for (int i = 0; i < 10; i++) {
+						enemiesSpawn[1][i][0] = enemy1[i][0];
+						enemiesSpawn[1][i][1] = enemy1[i][1];
+					}
+					playerSpawn[1][0][0] = 0;
+					playerSpawn[1][0][1] = 15;
+
+					// 第3关：岩浆
+					TileData level2Tiles[] = {
+						{1,1,LAVA_STONE}, {1,2,LAVA_STONE}, {1,10,LAVA_STONE}, {1,11,LAVA_STONE},
+						{1,19,LAVA_STONE}, {1,20,LAVA_STONE}, {4,3,LAVA_STONE}, {4,4,LAVA_STONE},
+						{4,10,LAVA_STONE}, {4,11,LAVA_STONE}, {4,17,LAVA_STONE}, {4,18,LAVA_STONE},
+						{7,0,LAVA_STONE}, {7,1,LAVA_STONE}, {7,15,LAVA_STONE}, {7,16,LAVA_STONE},
+						{7,21,LAVA_STONE}, {7,22,LAVA_STONE}, {8,0,LAVA_STONE}, {8,1,LAVA_STONE},
+						{8,15,LAVA_STONE}, {8,16,LAVA_STONE}, {8,21,LAVA_STONE}, {8,22,LAVA_STONE},
+						{11,3,LAVA_STONE}, {11,4,LAVA_STONE}, {11,10,LAVA_STONE}, {11,11,LAVA_STONE},
+						{11,17,LAVA_STONE}, {11,18,LAVA_STONE}, {14,1,LAVA_STONE}, {14,2,LAVA_STONE},
+						{14,10,LAVA_STONE}, {14,11,LAVA_STONE}, {14,19,LAVA_STONE}, {14,20,LAVA_STONE},
+						{7,5,LAVA_BRICK}, {7,6,LAVA_BRICK}, {8,5,LAVA_BRICK}, {8,6,LAVA_BRICK},
+						{2,6,LAVA_BRICK}, {2,15,LAVA_BRICK}, {13,6,LAVA_BRICK}, {13,15,LAVA_BRICK}
+					};
+					initLevel(2, level2Tiles, sizeof(level2Tiles) / sizeof(TileData));
+
+					int enemy2[10][2] = { {5,0}, {15,0}, {24,0}, {1,5}, {22,5}, {1,11}, {23,12}, {6,14}, {11,15}, {11,13} };
+					for (int i = 0; i < 10; i++) {
+						enemiesSpawn[2][i][0] = enemy2[i][0];
+						enemiesSpawn[2][i][1] = enemy2[i][1];
+					}
+					playerSpawn[2][0][0] = 10;
+					playerSpawn[2][0][1] = 6;
+
+					// 第4关：荒地
+					TileData level3Tiles[] = {
+						{0,4,WASTELAND_GRASS}, {0,5,WASTELAND_GRASS}, {1,4,WASTELAND_GRASS}, {1,5,WASTELAND_GRASS},
+						{4,21,WASTELAND_GRASS}, {4,22,WASTELAND_GRASS}, {5,21,WASTELAND_GRASS}, {5,22,WASTELAND_GRASS},
+						{10,4,WASTELAND_GRASS}, {10,14,WASTELAND_GRASS}, {11,5,WASTELAND_GRASS}, {12,5,WASTELAND_GRASS},
+						{12,19,WASTELAND_GRASS}, {13,4,WASTELAND_GRASS}, {13,19,WASTELAND_GRASS},
+						{0,20,WASTELAND_TREE}, {3,9,WASTELAND_TREE}, {3,10,WASTELAND_TREE}, {4,0,WASTELAND_TREE},
+						{4,9,WASTELAND_TREE}, {4,10,WASTELAND_TREE}, {5,4,WASTELAND_TREE}, {5,5,WASTELAND_TREE},
+						{7,25,WASTELAND_TREE}, {8,15,WASTELAND_TREE}, {9,0,WASTELAND_TREE}, {9,15,WASTELAND_TREE},
+						{9,20,WASTELAND_TREE}, {9,21,WASTELAND_TREE}, {9,22,WASTELAND_TREE},
+						{0,0,WASTELAND_SHRUB}, {0,13,WASTELAND_SHRUB}, {0,25,WASTELAND_SHRUB}, {1,13,WASTELAND_SHRUB},
+						{2,13,WASTELAND_SHRUB}, {6,4,WASTELAND_SHRUB}, {6,5,WASTELAND_SHRUB}, {7,4,WASTELAND_SHRUB},
+						{7,5,WASTELAND_SHRUB}, {8,18,WASTELAND_SHRUB}, {8,19,WASTELAND_SHRUB}, {9,18,WASTELAND_SHRUB},
+						{9,19,WASTELAND_SHRUB}, {12,24,WASTELAND_SHRUB}, {12,25,WASTELAND_SHRUB}, {15,0,WASTELAND_SHRUB},
+						{15,25,WASTELAND_SHRUB},
+						{3,17,WASTELAND_BOX}, {3,18,WASTELAND_BOX}, {4,17,WASTELAND_BOX}, {4,18,WASTELAND_BOX},
+						{7,11,WASTELAND_BOX}, {7,12,WASTELAND_BOX}, {10,5,WASTELAND_BOX}, {10,8,WASTELAND_BOX},
+						{10,9,WASTELAND_BOX}, {11,4,WASTELAND_BOX}, {12,4,WASTELAND_BOX}, {13,5,WASTELAND_BOX},
+						{14,10,WASTELAND_BOX}, {15,10,WASTELAND_BOX}, {15,18,WASTELAND_BOX}, {15,19,WASTELAND_BOX},
+						{15,20,WASTELAND_BOX}
+					};
+					initLevel(3, level3Tiles, sizeof(level3Tiles) / sizeof(TileData));
+
+					int enemy3[10][2] = { {1,2}, {2,6}, {4,4}, {7,7}, {9,1}, {11,5}, {14,3}, {17,1}, {22,7}, {24,2} };
+					for (int i = 0; i < 10; i++) {
+						enemiesSpawn[3][i][0] = enemy3[i][0];
+						enemiesSpawn[3][i][1] = enemy3[i][1];
+					}
+					playerSpawn[3][0][0] = 5;
+					playerSpawn[3][0][1] = 15;
+
+					// 第5关：雪地
+					TileData level4Tiles[] = {
+						// 冰块 SNOW_ICE
+						{1,3,SNOW_ICE},  {1,7,SNOW_ICE},
+						{3,11,SNOW_ICE}, {3,18,SNOW_ICE},
+						{4,2,SNOW_ICE},  {4,15,SNOW_ICE},
+						{5,15,SNOW_ICE}, {5,19,SNOW_ICE}, {5,23,SNOW_ICE},
+						{6,11,SNOW_ICE}, {6,18,SNOW_ICE}, {6,26,SNOW_ICE},
+						{8,2,SNOW_ICE},  {8,10,SNOW_ICE}, {8,14,SNOW_ICE},
+						{12,11,SNOW_ICE},{12,14,SNOW_ICE},
+						{13,2,SNOW_ICE}, {13,23,SNOW_ICE},
+						{16,5,SNOW_ICE}, {16,18,SNOW_ICE},
+
+						// 砖块 SNOW_BRICK
+						{1,2,SNOW_BRICK},  {1,6,SNOW_BRICK},  {1,23,SNOW_BRICK}, {1,26,SNOW_BRICK},
+						{3,15,SNOW_BRICK},
+						{4,3,SNOW_BRICK},  {4,7,SNOW_BRICK},  {4,23,SNOW_BRICK}, {4,26,SNOW_BRICK},
+						{5,2,SNOW_BRICK},
+						{6,10,SNOW_BRICK}, {6,14,SNOW_BRICK}, {6,15,SNOW_BRICK}, {6,19,SNOW_BRICK}, {6,22,SNOW_BRICK}, {6,23,SNOW_BRICK},
+						{7,6,SNOW_BRICK},  {7,7,SNOW_BRICK},  {7,15,SNOW_BRICK},
+						{8,11,SNOW_BRICK}, {8,15,SNOW_BRICK},
+						{9,3,SNOW_BRICK},  {9,18,SNOW_BRICK}, {9,19,SNOW_BRICK}, {9,23,SNOW_BRICK},
+						{11,10,SNOW_BRICK},{11,11,SNOW_BRICK},
+						{12,2,SNOW_BRICK}, {12,3,SNOW_BRICK}, {12,6,SNOW_BRICK}, {12,7,SNOW_BRICK}, {12,18,SNOW_BRICK},{12,19,SNOW_BRICK},{12,23,SNOW_BRICK},
+						{13,7,SNOW_BRICK}, {13,11,SNOW_BRICK},{13,22,SNOW_BRICK},
+						{16,6,SNOW_BRICK}, {16,21,SNOW_BRICK},
+
+						// 雪人 SNOW_SNOWMAN
+						{5,3,SNOW_SNOWMAN},  {5,14,SNOW_SNOWMAN}, {5,18,SNOW_SNOWMAN}, {5,22,SNOW_SNOWMAN}, {5,26,SNOW_SNOWMAN},
+						{7,10,SNOW_SNOWMAN}, {7,11,SNOW_SNOWMAN}, {7,14,SNOW_SNOWMAN},
+						{9,2,SNOW_SNOWMAN},  {9,26,SNOW_SNOWMAN},
+						{13,3,SNOW_SNOWMAN}, {13,14,SNOW_SNOWMAN},{13,19,SNOW_SNOWMAN},{13,26,SNOW_SNOWMAN},
+						{16,4,SNOW_SNOWMAN}, {16,7,SNOW_SNOWMAN},
+
+						// 树木 SNOW_TREE
+						{1,22,SNOW_TREE},
+						{3,10,SNOW_TREE}, {3,14,SNOW_TREE}, {3,19,SNOW_TREE},
+						{4,6,SNOW_TREE},  {4,14,SNOW_TREE}, {4,18,SNOW_TREE}, {4,19,SNOW_TREE}, {4,22,SNOW_TREE},
+						{8,3,SNOW_TREE},  {8,6,SNOW_TREE},  {8,7,SNOW_TREE},
+						{9,14,SNOW_TREE}, {9,15,SNOW_TREE}, {9,22,SNOW_TREE},
+						{12,5,SNOW_TREE}, {12,10,SNOW_TREE},{12,15,SNOW_TREE},{12,18,SNOW_TREE},{12,22,SNOW_TREE},{12,26,SNOW_TREE},
+						{13,6,SNOW_TREE}, {13,10,SNOW_TREE},{13,15,SNOW_TREE},
+						{16,3,SNOW_TREE}, {16,10,SNOW_TREE},{16,11,SNOW_TREE},{16,19,SNOW_TREE},{16,20,SNOW_TREE},{16,24,SNOW_TREE},{16,25,SNOW_TREE},{16,26,SNOW_TREE}
+					};
+					initLevel(4, level4Tiles, sizeof(level4Tiles) / sizeof(TileData));
+
+					int enemy4[10][2] = { {1,2}, {25,2}, {13,2}, {5,5}, {9,5}, {16,5}, {4,9}, {9,9}, {17,8}, {21,8} };
+					for (int i = 0; i < 10; i++) {
+						enemiesSpawn[4][i][0] = enemy4[i][0];
+						enemiesSpawn[4][i][1] = enemy4[i][1];
+					}
+					playerSpawn[4][0][0] = 2;
+					playerSpawn[4][0][1] = 15;
+
+					// 第6关：地牢
+					TileData level5Tiles[] = {
+						{3,3,DARK_STONE}, {3,4,DARK_STONE}, {3,5,DARK_STONE}, {4,3,DARK_STONE},
+						{4,4,DARK_STONE}, {4,5,DARK_STONE}, {7,13,DARK_STONE}, {7,14,DARK_STONE},
+						{8,13,DARK_STONE}, {8,14,DARK_STONE}, {8,5,DARK_STONE}, {8,6,DARK_STONE},
+						{9,5,DARK_STONE}, {9,6,DARK_STONE}, {10,25,DARK_STONE}, {11,0,DARK_STONE},
+						{11,1,DARK_STONE}, {11,24,DARK_STONE}, {11,25,DARK_STONE}, {12,0,DARK_STONE},
+						{12,1,DARK_STONE},
+						{0,11,DARK_IRON}, {0,17,DARK_IRON}, {1,11,DARK_IRON}, {1,17,DARK_IRON},
+						{3,22,DARK_IRON}, {3,23,DARK_IRON}, {3,24,DARK_IRON}, {3,25,DARK_IRON},
+						{5,8,DARK_IRON}, {5,9,DARK_IRON}, {5,13,DARK_IRON}, {6,13,DARK_IRON},
+						{6,22,DARK_IRON}, {7,15,DARK_IRON}, {7,16,DARK_IRON}, {7,22,DARK_IRON},
+						{8,11,DARK_IRON}, {8,12,DARK_IRON}, {9,14,DARK_IRON}, {10,14,DARK_IRON},
+						{10,18,DARK_IRON}, {10,19,DARK_IRON}, {13,19,DARK_IRON}, {13,20,DARK_IRON},
+						{13,21,DARK_IRON}, {14,8,DARK_IRON}, {14,21,DARK_IRON}, {15,8,DARK_IRON},
+						{15,21,DARK_IRON}
+					};
+					initLevel(5, level5Tiles, sizeof(level5Tiles) / sizeof(TileData));
+
+					int enemy5[10][2] = { {5,0}, {14,0}, {22,0}, {11,3}, {19,4}, {1,6}, {24,6}, {8,7}, {11,11}, {24,14} };
+					for (int i = 0; i < 10; i++) {
+						enemiesSpawn[5][i][0] = enemy5[i][0];
+						enemiesSpawn[5][i][1] = enemy5[i][1];
+					}
+					playerSpawn[5][0][0] = 5;
+					playerSpawn[5][0][1] = 15;
+}
+
+void initMapData02() {
+					//关卡初始化
+					// 初始化关卡
+					// 第1关：草地
+					TileData level0Tiles[] = {
+						{2,2,GRASS_WALL}, {5,3,GRASS_WALL}, {8,4,GRASS_WALL}, {8,5,GRASS_WALL},
+						{10,4,GRASS_WALL}, {4,2,GRASS_WALL}, {6,6,GRASS_WALL}, {8,12,GRASS_WALL},
+						{4,8,GRASS_WALL}, {10,8,GRASS_WALL}, {2,9,GRASS_WALL}, {3,11,GRASS_WALL},
+						{7,13,GRASS_WALL}, {12,10,GRASS_WALL}, {8,15,GRASS_WALL}, {12,14,GRASS_WALL},
+						{10,16,GRASS_WALL}, {6,17,GRASS_WALL}, {5,19,GRASS_WALL}, {2,21,GRASS_WALL},
+						{13,18,GRASS_WALL},
+						{3,1,GRASS_FOREST}, {4,1,GRASS_FOREST}, {5,1,GRASS_FOREST}, {6,1,GRASS_FOREST},
+						{3,2,GRASS_FOREST}, {5,2,GRASS_FOREST}, {6,2,GRASS_FOREST}, {6,3,GRASS_FOREST},
+						{9,6,GRASS_FOREST}, {10,6,GRASS_FOREST}, {11,6,GRASS_FOREST}, {12,6,GRASS_FOREST},
+						{10,5,GRASS_FOREST}, {11,5,GRASS_FOREST}, {12,5,GRASS_FOREST}, {13,5,GRASS_FOREST},
+						{12,4,GRASS_FOREST}, {13,4,GRASS_FOREST}, {3,12,GRASS_FOREST}, {3,13,GRASS_FOREST},
+						{3,14,GRASS_FOREST}, {3,15,GRASS_FOREST}, {3,16,GRASS_FOREST}, {4,13,GRASS_FOREST},
+						{4,14,GRASS_FOREST}, {4,15,GRASS_FOREST}, {5,14,GRASS_FOREST}, {8,20,GRASS_FOREST},
+						{8,21,GRASS_FOREST}, {8,22,GRASS_FOREST}, {9,20,GRASS_FOREST}, {9,21,GRASS_FOREST},
+						{9,22,GRASS_FOREST}, {10,20,GRASS_FOREST}, {10,21,GRASS_FOREST}, {10,22,GRASS_FOREST},
+						{11,20,GRASS_FOREST}, {11,21,GRASS_FOREST}, {11,22,GRASS_FOREST}
+					};
+					initLevel(0, level0Tiles, sizeof(level0Tiles) / sizeof(TileData));
+
+					int enemy0[10][2] = { {1,0}, {7,0}, {11,0}, {18,0}, {1,10}, {1,14}, {8,15}, {10,15}, {23,14}, {20,14} };
+					for (int i = 0; i < 10; i++) {
+						enemiesSpawn[0][i][0] = enemy0[i][0];
+						enemiesSpawn[0][i][1] = enemy0[i][1];
+					}
+					playerSpawn[0][0][0] = 7;
+					playerSpawn[0][0][1] = 6;
+
+					// 第2关：沙漠
+					TileData level1Tiles[] = {
+						{3,5,DESERT_PYRAMID}, {3,14,DESERT_PYRAMID}, {4,13,DESERT_PYRAMID}, {4,14,DESERT_PYRAMID},
+						{4,23,DESERT_PYRAMID}, {4,24,DESERT_PYRAMID}, {5,5,DESERT_PYRAMID}, {5,13,DESERT_PYRAMID},
+						{6,14,DESERT_PYRAMID}, {7,10,DESERT_PYRAMID}, {7,19,DESERT_PYRAMID}, {7,20,DESERT_PYRAMID},
+						{9,23,DESERT_PYRAMID}, {9,24,DESERT_PYRAMID}, {10,1,DESERT_PYRAMID}, {10,5,DESERT_PYRAMID},
+						{10,13,DESERT_PYRAMID}, {11,1,DESERT_PYRAMID}, {11,13,DESERT_PYRAMID}, {11,23,DESERT_PYRAMID},
+						{13,5,DESERT_PYRAMID}, {14,6,DESERT_PYRAMID}, {16,10,DESERT_PYRAMID}, {16,19,DESERT_PYRAMID},
+						{16,23,DESERT_PYRAMID},
+						{3,6,DESERT_BRICK}, {3,13,DESERT_BRICK}, {3,19,DESERT_BRICK}, {3,20,DESERT_BRICK},
+						{3,23,DESERT_BRICK}, {3,24,DESERT_BRICK}, {4,5,DESERT_BRICK}, {4,6,DESERT_BRICK},
+						{5,6,DESERT_BRICK}, {5,14,DESERT_BRICK}, {5,23,DESERT_BRICK}, {5,24,DESERT_BRICK},
+						{5,26,DESERT_BRICK}, {6,1,DESERT_BRICK}, {6,9,DESERT_BRICK}, {6,10,DESERT_BRICK},
+						{6,13,DESERT_BRICK}, {6,19,DESERT_BRICK}, {6,20,DESERT_BRICK}, {6,26,DESERT_BRICK},
+						{7,9,DESERT_BRICK}, {9,5,DESERT_BRICK}, {9,6,DESERT_BRICK}, {10,6,DESERT_BRICK},
+						{10,14,DESERT_BRICK}, {10,19,DESERT_BRICK}, {10,20,DESERT_BRICK}, {10,23,DESERT_BRICK},
+						{10,24,DESERT_BRICK}, {11,14,DESERT_BRICK}, {11,19,DESERT_BRICK}, {11,20,DESERT_BRICK},
+						{11,24,DESERT_BRICK}, {12,9,DESERT_BRICK}, {12,10,DESERT_BRICK}, {16,9,DESERT_BRICK},
+						{16,20,DESERT_BRICK}, {16,24,DESERT_BRICK}, {13,6,DESERT_BRICK}, {13,9,DESERT_BRICK},
+						{13,10,DESERT_BRICK}, {14,5,DESERT_BRICK}
+					};
+					initLevel(1, level1Tiles, sizeof(level1Tiles) / sizeof(TileData));
+
+					int enemy1[10][2] = { {4,0}, {8,2}, {8,8}, {15,0}, {19,4}, {25,3}, {25,9}, {15,10}, {21,15}, {9,10} };
+					for (int i = 0; i < 10; i++) {
+						enemiesSpawn[1][i][0] = enemy1[i][0];
+						enemiesSpawn[1][i][1] = enemy1[i][1];
+					}
+					playerSpawn[1][0][0] = 0;
+					playerSpawn[1][0][1] = 15;
+
+					// 第3关：岩浆
+					TileData level2Tiles[] = {
+						{1,1,LAVA_STONE}, {1,2,LAVA_STONE}, {1,10,LAVA_STONE}, {1,11,LAVA_STONE},
+						{1,19,LAVA_STONE}, {1,20,LAVA_STONE}, {4,3,LAVA_STONE}, {4,4,LAVA_STONE},
+						{4,10,LAVA_STONE}, {4,11,LAVA_STONE}, {4,17,LAVA_STONE}, {4,18,LAVA_STONE},
+						{7,0,LAVA_STONE}, {7,1,LAVA_STONE}, {7,15,LAVA_STONE}, {7,16,LAVA_STONE},
+						{7,21,LAVA_STONE}, {7,22,LAVA_STONE}, {8,0,LAVA_STONE}, {8,1,LAVA_STONE},
+						{8,15,LAVA_STONE}, {8,16,LAVA_STONE}, {8,21,LAVA_STONE}, {8,22,LAVA_STONE},
+						{11,3,LAVA_STONE}, {11,4,LAVA_STONE}, {11,10,LAVA_STONE}, {11,11,LAVA_STONE},
+						{11,17,LAVA_STONE}, {11,18,LAVA_STONE}, {14,1,LAVA_STONE}, {14,2,LAVA_STONE},
+						{14,10,LAVA_STONE}, {14,11,LAVA_STONE}, {14,19,LAVA_STONE}, {14,20,LAVA_STONE},
+						{7,5,LAVA_BRICK}, {7,6,LAVA_BRICK}, {8,5,LAVA_BRICK}, {8,6,LAVA_BRICK},
+						{2,6,LAVA_BRICK}, {2,15,LAVA_BRICK}, {13,6,LAVA_BRICK}, {13,15,LAVA_BRICK}
+					};
+					initLevel(2, level2Tiles, sizeof(level2Tiles) / sizeof(TileData));
+
+					int enemy2[10][2] = { {5,0}, {15,0}, {24,0}, {1,5}, {22,5}, {1,11}, {23,12}, {6,14}, {11,15}, {11,13} };
+					for (int i = 0; i < 10; i++) {
+						enemiesSpawn[2][i][0] = enemy2[i][0];
+						enemiesSpawn[2][i][1] = enemy2[i][1];
+					}
+					playerSpawn[2][0][0] = 10;
+					playerSpawn[2][0][1] = 6;
+
+					// 第4关：荒地
+					TileData level3Tiles[] = {
+						{0,4,WASTELAND_GRASS}, {0,5,WASTELAND_GRASS}, {1,4,WASTELAND_GRASS}, {1,5,WASTELAND_GRASS},
+						{4,21,WASTELAND_GRASS}, {4,22,WASTELAND_GRASS}, {5,21,WASTELAND_GRASS}, {5,22,WASTELAND_GRASS},
+						{10,4,WASTELAND_GRASS}, {10,14,WASTELAND_GRASS}, {11,5,WASTELAND_GRASS}, {12,5,WASTELAND_GRASS},
+						{12,19,WASTELAND_GRASS}, {13,4,WASTELAND_GRASS}, {13,19,WASTELAND_GRASS},
+						{0,20,WASTELAND_TREE}, {3,9,WASTELAND_TREE}, {3,10,WASTELAND_TREE}, {4,0,WASTELAND_TREE},
+						{4,9,WASTELAND_TREE}, {4,10,WASTELAND_TREE}, {5,4,WASTELAND_TREE}, {5,5,WASTELAND_TREE},
+						{7,25,WASTELAND_TREE}, {8,15,WASTELAND_TREE}, {9,0,WASTELAND_TREE}, {9,15,WASTELAND_TREE},
+						{9,20,WASTELAND_TREE}, {9,21,WASTELAND_TREE}, {9,22,WASTELAND_TREE},
+						{0,0,WASTELAND_SHRUB}, {0,13,WASTELAND_SHRUB}, {0,25,WASTELAND_SHRUB}, {1,13,WASTELAND_SHRUB},
+						{2,13,WASTELAND_SHRUB}, {6,4,WASTELAND_SHRUB}, {6,5,WASTELAND_SHRUB}, {7,4,WASTELAND_SHRUB},
+						{7,5,WASTELAND_SHRUB}, {8,18,WASTELAND_SHRUB}, {8,19,WASTELAND_SHRUB}, {9,18,WASTELAND_SHRUB},
+						{9,19,WASTELAND_SHRUB}, {12,24,WASTELAND_SHRUB}, {12,25,WASTELAND_SHRUB}, {15,0,WASTELAND_SHRUB},
+						{15,25,WASTELAND_SHRUB},
+						{3,17,WASTELAND_BOX}, {3,18,WASTELAND_BOX}, {4,17,WASTELAND_BOX}, {4,18,WASTELAND_BOX},
+						{7,11,WASTELAND_BOX}, {7,12,WASTELAND_BOX}, {10,5,WASTELAND_BOX}, {10,8,WASTELAND_BOX},
+						{10,9,WASTELAND_BOX}, {11,4,WASTELAND_BOX}, {12,4,WASTELAND_BOX}, {13,5,WASTELAND_BOX},
+						{14,10,WASTELAND_BOX}, {15,10,WASTELAND_BOX}, {15,18,WASTELAND_BOX}, {15,19,WASTELAND_BOX},
+						{15,20,WASTELAND_BOX}
+					};
+					initLevel(3, level3Tiles, sizeof(level3Tiles) / sizeof(TileData));
+
+					int enemy3[10][2] = { {1,2}, {2,6}, {4,4}, {7,7}, {9,1}, {11,5}, {14,3}, {17,1}, {22,7}, {24,2} };
+					for (int i = 0; i < 10; i++) {
+						enemiesSpawn[3][i][0] = enemy3[i][0];
+						enemiesSpawn[3][i][1] = enemy3[i][1];
+					}
+					playerSpawn[3][0][0] = 5;
+					playerSpawn[3][0][1] = 15;
+
+					// 第5关：雪地
+					TileData level4Tiles[] = {
+						// 冰块 SNOW_ICE
+						{1,3,SNOW_ICE},  {1,7,SNOW_ICE},
+						{3,11,SNOW_ICE}, {3,18,SNOW_ICE},
+						{4,2,SNOW_ICE},  {4,15,SNOW_ICE},
+						{5,15,SNOW_ICE}, {5,19,SNOW_ICE}, {5,23,SNOW_ICE},
+						{6,11,SNOW_ICE}, {6,18,SNOW_ICE}, {6,26,SNOW_ICE},
+						{8,2,SNOW_ICE},  {8,10,SNOW_ICE}, {8,14,SNOW_ICE},
+						{12,11,SNOW_ICE},{12,14,SNOW_ICE},
+						{13,2,SNOW_ICE}, {13,23,SNOW_ICE},
+						{16,5,SNOW_ICE}, {16,18,SNOW_ICE},
+
+						// 砖块 SNOW_BRICK
+						{1,2,SNOW_BRICK},  {1,6,SNOW_BRICK},  {1,23,SNOW_BRICK}, {1,26,SNOW_BRICK},
+						{3,15,SNOW_BRICK},
+						{4,3,SNOW_BRICK},  {4,7,SNOW_BRICK},  {4,23,SNOW_BRICK}, {4,26,SNOW_BRICK},
+						{5,2,SNOW_BRICK},
+						{6,10,SNOW_BRICK}, {6,14,SNOW_BRICK}, {6,15,SNOW_BRICK}, {6,19,SNOW_BRICK}, {6,22,SNOW_BRICK}, {6,23,SNOW_BRICK},
+						{7,6,SNOW_BRICK},  {7,7,SNOW_BRICK},  {7,15,SNOW_BRICK},
+						{8,11,SNOW_BRICK}, {8,15,SNOW_BRICK},
+						{9,3,SNOW_BRICK},  {9,18,SNOW_BRICK}, {9,19,SNOW_BRICK}, {9,23,SNOW_BRICK},
+						{11,10,SNOW_BRICK},{11,11,SNOW_BRICK},
+						{12,2,SNOW_BRICK}, {12,3,SNOW_BRICK}, {12,6,SNOW_BRICK}, {12,7,SNOW_BRICK}, {12,18,SNOW_BRICK},{12,19,SNOW_BRICK},{12,23,SNOW_BRICK},
+						{13,7,SNOW_BRICK}, {13,11,SNOW_BRICK},{13,22,SNOW_BRICK},
+						{16,6,SNOW_BRICK}, {16,21,SNOW_BRICK},
+
+						// 雪人 SNOW_SNOWMAN
+						{5,3,SNOW_SNOWMAN},  {5,14,SNOW_SNOWMAN}, {5,18,SNOW_SNOWMAN}, {5,22,SNOW_SNOWMAN}, {5,26,SNOW_SNOWMAN},
+						{7,10,SNOW_SNOWMAN}, {7,11,SNOW_SNOWMAN}, {7,14,SNOW_SNOWMAN},
+						{9,2,SNOW_SNOWMAN},  {9,26,SNOW_SNOWMAN},
+						{13,3,SNOW_SNOWMAN}, {13,14,SNOW_SNOWMAN},{13,19,SNOW_SNOWMAN},{13,26,SNOW_SNOWMAN},
+						{16,4,SNOW_SNOWMAN}, {16,7,SNOW_SNOWMAN},
+
+						// 树木 SNOW_TREE
+						{1,22,SNOW_TREE},
+						{3,10,SNOW_TREE}, {3,14,SNOW_TREE}, {3,19,SNOW_TREE},
+						{4,6,SNOW_TREE},  {4,14,SNOW_TREE}, {4,18,SNOW_TREE}, {4,19,SNOW_TREE}, {4,22,SNOW_TREE},
+						{8,3,SNOW_TREE},  {8,6,SNOW_TREE},  {8,7,SNOW_TREE},
+						{9,14,SNOW_TREE}, {9,15,SNOW_TREE}, {9,22,SNOW_TREE},
+						{12,5,SNOW_TREE}, {12,10,SNOW_TREE},{12,15,SNOW_TREE},{12,18,SNOW_TREE},{12,22,SNOW_TREE},{12,26,SNOW_TREE},
+						{13,6,SNOW_TREE}, {13,10,SNOW_TREE},{13,15,SNOW_TREE},
+						{16,3,SNOW_TREE}, {16,10,SNOW_TREE},{16,11,SNOW_TREE},{16,19,SNOW_TREE},{16,20,SNOW_TREE},{16,24,SNOW_TREE},{16,25,SNOW_TREE},{16,26,SNOW_TREE}
+					};
+					initLevel(4, level4Tiles, sizeof(level4Tiles) / sizeof(TileData));
+
+					int enemy4[10][2] = { {1,2}, {25,2}, {13,2}, {5,5}, {9,5}, {16,5}, {4,9}, {9,9}, {17,8}, {21,8} };
+					for (int i = 0; i < 10; i++) {
+						enemiesSpawn[4][i][0] = enemy4[i][0];
+						enemiesSpawn[4][i][1] = enemy4[i][1];
+					}
+					playerSpawn[4][0][0] = 2;
+					playerSpawn[4][0][1] = 15;
+
+					// 第6关：地牢
+					TileData level5Tiles[] = {
+						{3,3,DARK_STONE}, {3,4,DARK_STONE}, {3,5,DARK_STONE}, {4,3,DARK_STONE},
+						{4,4,DARK_STONE}, {4,5,DARK_STONE}, {7,13,DARK_STONE}, {7,14,DARK_STONE},
+						{8,13,DARK_STONE}, {8,14,DARK_STONE}, {8,5,DARK_STONE}, {8,6,DARK_STONE},
+						{9,5,DARK_STONE}, {9,6,DARK_STONE}, {10,25,DARK_STONE}, {11,0,DARK_STONE},
+						{11,1,DARK_STONE}, {11,24,DARK_STONE}, {11,25,DARK_STONE}, {12,0,DARK_STONE},
+						{12,1,DARK_STONE},
+						{0,11,DARK_IRON}, {0,17,DARK_IRON}, {1,11,DARK_IRON}, {1,17,DARK_IRON},
+						{3,22,DARK_IRON}, {3,23,DARK_IRON}, {3,24,DARK_IRON}, {3,25,DARK_IRON},
+						{5,8,DARK_IRON}, {5,9,DARK_IRON}, {5,13,DARK_IRON}, {6,13,DARK_IRON},
+						{6,22,DARK_IRON}, {7,15,DARK_IRON}, {7,16,DARK_IRON}, {7,22,DARK_IRON},
+						{8,11,DARK_IRON}, {8,12,DARK_IRON}, {9,14,DARK_IRON}, {10,14,DARK_IRON},
+						{10,18,DARK_IRON}, {10,19,DARK_IRON}, {13,19,DARK_IRON}, {13,20,DARK_IRON},
+						{13,21,DARK_IRON}, {14,8,DARK_IRON}, {14,21,DARK_IRON}, {15,8,DARK_IRON},
+						{15,21,DARK_IRON}
+					};
+					initLevel(5, level5Tiles, sizeof(level5Tiles) / sizeof(TileData));
+
+					int enemy5[10][2] = { {5,0}, {14,0}, {22,0}, {11,3}, {19,4}, {1,6}, {24,6}, {8,7}, {11,11}, {24,14} };
+					for (int i = 0; i < 10; i++) {
+						enemiesSpawn[5][i][0] = enemy5[i][0];
+						enemiesSpawn[5][i][1] = enemy5[i][1];
+					}
+					playerSpawn[5][0][0] = 5;
+					playerSpawn[5][0][1] = 15;
+}
+
+void initMapData03() {
+					//关卡初始化
+					// 初始化关卡
+					// 第1关：草地
+					TileData level0Tiles[] = {
+						{2,2,GRASS_WALL}, {5,3,GRASS_WALL}, {8,4,GRASS_WALL}, {8,5,GRASS_WALL},
+						{10,4,GRASS_WALL}, {4,2,GRASS_WALL}, {6,6,GRASS_WALL}, {8,12,GRASS_WALL},
+						{4,8,GRASS_WALL}, {10,8,GRASS_WALL}, {2,9,GRASS_WALL}, {3,11,GRASS_WALL},
+						{7,13,GRASS_WALL}, {12,10,GRASS_WALL}, {8,15,GRASS_WALL}, {12,14,GRASS_WALL},
+						{10,16,GRASS_WALL}, {6,17,GRASS_WALL}, {5,19,GRASS_WALL}, {2,21,GRASS_WALL},
+						{13,18,GRASS_WALL},
+						{3,1,GRASS_FOREST}, {4,1,GRASS_FOREST}, {5,1,GRASS_FOREST}, {6,1,GRASS_FOREST},
+						{3,2,GRASS_FOREST}, {5,2,GRASS_FOREST}, {6,2,GRASS_FOREST}, {6,3,GRASS_FOREST},
+						{9,6,GRASS_FOREST}, {10,6,GRASS_FOREST}, {11,6,GRASS_FOREST}, {12,6,GRASS_FOREST},
+						{10,5,GRASS_FOREST}, {11,5,GRASS_FOREST}, {12,5,GRASS_FOREST}, {13,5,GRASS_FOREST},
+						{12,4,GRASS_FOREST}, {13,4,GRASS_FOREST}, {3,12,GRASS_FOREST}, {3,13,GRASS_FOREST},
+						{3,14,GRASS_FOREST}, {3,15,GRASS_FOREST}, {3,16,GRASS_FOREST}, {4,13,GRASS_FOREST},
+						{4,14,GRASS_FOREST}, {4,15,GRASS_FOREST}, {5,14,GRASS_FOREST}, {8,20,GRASS_FOREST},
+						{8,21,GRASS_FOREST}, {8,22,GRASS_FOREST}, {9,20,GRASS_FOREST}, {9,21,GRASS_FOREST},
+						{9,22,GRASS_FOREST}, {10,20,GRASS_FOREST}, {10,21,GRASS_FOREST}, {10,22,GRASS_FOREST},
+						{11,20,GRASS_FOREST}, {11,21,GRASS_FOREST}, {11,22,GRASS_FOREST},
+						{15,12,GRASS_FOREST},{14,12,GRASS_FOREST}, {13,12,GRASS_FOREST}, {13,13,GRASS_FOREST} ,
+						{13,14,GRASS_FOREST} ,{13,15,GRASS_FOREST} ,{14,15,GRASS_FOREST},{15,15,GRASS_FOREST},{
+							15,13,WALL_BASE} ,{15,14,WALL_BASE} ,{14,13,WALL_BASE},{14,14,WALL_BASE}
+					};
+					initLevel(0, level0Tiles, sizeof(level0Tiles) / sizeof(TileData));
+
+					int enemy0[10][2] = { {1,0}, {7,0}, {11,0}, {18,0}, {1,10}, {1,14}, {8,15}, {10,15}, {23,14}, {20,14} };
+					for (int i = 0; i < 10; i++) {
+						enemiesSpawn[0][i][0] = enemy0[i][0];
+						enemiesSpawn[0][i][1] = enemy0[i][1];
+					}
+					playerSpawn[0][0][0] = 7;
+					playerSpawn[0][0][1] = 6;
+
+					// 第2关：沙漠
+					TileData level1Tiles[] = {
+						{3,5,DESERT_PYRAMID}, {3,14,DESERT_PYRAMID}, {4,13,DESERT_PYRAMID}, {4,14,DESERT_PYRAMID},
+						{4,23,DESERT_PYRAMID}, {4,24,DESERT_PYRAMID}, {5,5,DESERT_PYRAMID}, {5,13,DESERT_PYRAMID},
+						{6,14,DESERT_PYRAMID}, {7,10,DESERT_PYRAMID}, {7,19,DESERT_PYRAMID}, {7,20,DESERT_PYRAMID},
+						{9,23,DESERT_PYRAMID}, {9,24,DESERT_PYRAMID}, {10,1,DESERT_PYRAMID}, {10,5,DESERT_PYRAMID},
+						{10,13,DESERT_PYRAMID}, {11,1,DESERT_PYRAMID}, {11,13,DESERT_PYRAMID}, {11,23,DESERT_PYRAMID},
+						{13,5,DESERT_PYRAMID}, {14,6,DESERT_PYRAMID}, {16,10,DESERT_PYRAMID}, {16,19,DESERT_PYRAMID},
+						{16,23,DESERT_PYRAMID},
+						{3,6,DESERT_BRICK}, {3,13,DESERT_BRICK}, {3,19,DESERT_BRICK}, {3,20,DESERT_BRICK},
+						{3,23,DESERT_BRICK}, {3,24,DESERT_BRICK}, {4,5,DESERT_BRICK}, {4,6,DESERT_BRICK},
+						{5,6,DESERT_BRICK}, {5,14,DESERT_BRICK}, {5,23,DESERT_BRICK}, {5,24,DESERT_BRICK},
+						{5,26,DESERT_BRICK}, {6,1,DESERT_BRICK}, {6,9,DESERT_BRICK}, {6,10,DESERT_BRICK},
+						{6,13,DESERT_BRICK}, {6,19,DESERT_BRICK}, {6,20,DESERT_BRICK}, {6,26,DESERT_BRICK},
+						{7,9,DESERT_BRICK}, {9,5,DESERT_BRICK}, {9,6,DESERT_BRICK}, {10,6,DESERT_BRICK},
+						{10,14,DESERT_BRICK}, {10,19,DESERT_BRICK}, {10,20,DESERT_BRICK}, {10,23,DESERT_BRICK},
+						{10,24,DESERT_BRICK}, {11,14,DESERT_BRICK}, {11,19,DESERT_BRICK}, {11,20,DESERT_BRICK},
+						{11,24,DESERT_BRICK}, {12,9,DESERT_BRICK}, {12,10,DESERT_BRICK}, {16,9,DESERT_BRICK},
+						{16,20,DESERT_BRICK}, {16,24,DESERT_BRICK}, {13,6,DESERT_BRICK}, {13,9,DESERT_BRICK},
+						{13,10,DESERT_BRICK}, {14,5,DESERT_BRICK} ,
+						{15,12,DESERT_BRICK},{14,12,DESERT_BRICK}, {13,12,DESERT_BRICK}, {13,13,DESERT_BRICK} ,
+						{13,14,DESERT_BRICK} ,{13,15,DESERT_BRICK} ,{14,15,DESERT_BRICK},{15,15,DESERT_BRICK},
+						{15,13,WALL_BASE} ,{15,14,WALL_BASE} ,{14,13,WALL_BASE},{14,14,WALL_BASE}
+					};
+					initLevel(1, level1Tiles, sizeof(level1Tiles) / sizeof(TileData));
+
+					int enemy1[10][2] = { {4,0}, {8,2}, {8,8}, {15,0}, {19,4}, {25,3}, {25,9}, {15,10}, {21,15}, {9,10} };
+					for (int i = 0; i < 10; i++) {
+						enemiesSpawn[1][i][0] = enemy1[i][0];
+						enemiesSpawn[1][i][1] = enemy1[i][1];
+					}
+					playerSpawn[1][0][0] = 0;
+					playerSpawn[1][0][1] = 15;
+
+					// 第3关：岩浆
+					TileData level2Tiles[] = {
+						{1,1,LAVA_STONE}, {1,2,LAVA_STONE}, {1,10,LAVA_STONE}, {1,11,LAVA_STONE},
+						{1,19,LAVA_STONE}, {1,20,LAVA_STONE}, {4,3,LAVA_STONE}, {4,4,LAVA_STONE},
+						{4,10,LAVA_STONE}, {4,11,LAVA_STONE}, {4,17,LAVA_STONE}, {4,18,LAVA_STONE},
+						{7,0,LAVA_STONE}, {7,1,LAVA_STONE}, {7,15,LAVA_STONE}, {7,16,LAVA_STONE},
+						{7,21,LAVA_STONE}, {7,22,LAVA_STONE}, {8,0,LAVA_STONE}, {8,1,LAVA_STONE},
+						{8,15,LAVA_STONE}, {8,16,LAVA_STONE}, {8,21,LAVA_STONE}, {8,22,LAVA_STONE},
+						{11,3,LAVA_STONE}, {11,4,LAVA_STONE}, {11,10,LAVA_STONE}, {11,11,LAVA_STONE},
+						{11,17,LAVA_STONE}, {11,18,LAVA_STONE}, {14,1,LAVA_STONE}, {14,2,LAVA_STONE},
+						{14,10,LAVA_STONE}, {14,11,LAVA_STONE}, {14,19,LAVA_STONE}, {14,20,LAVA_STONE},
+						{7,5,LAVA_BRICK}, {7,6,LAVA_BRICK}, {8,5,LAVA_BRICK}, {8,6,LAVA_BRICK},
+						{2,6,LAVA_BRICK}, {2,15,LAVA_BRICK}, {13,6,LAVA_BRICK}, {13,15,LAVA_BRICK},
+						{15,12,LAVA_BRICK},{14,12,LAVA_BRICK}, {13,12,LAVA_BRICK}, {13,13,LAVA_BRICK} ,
+						{13,14,LAVA_BRICK} ,{13,15,LAVA_BRICK} ,{14,15,LAVA_BRICK},{15,15,LAVA_BRICK},
+						{15,14,WALL_BASE} ,{15,13,WALL_BASE} ,{14,13,WALL_BASE},{14,14,WALL_BASE}
+					};
+					initLevel(2, level2Tiles, sizeof(level2Tiles) / sizeof(TileData));
+
+					int enemy2[10][2] = { {5,0}, {15,0}, {24,0}, {1,5}, {22,5}, {1,11}, {23,12}, {6,14}, {11,15}, {11,13} };
+					for (int i = 0; i < 10; i++) {
+						enemiesSpawn[2][i][0] = enemy2[i][0];
+						enemiesSpawn[2][i][1] = enemy2[i][1];
+					}
+					playerSpawn[2][0][0] = 10;
+					playerSpawn[2][0][1] = 6;
+
+					// 第4关：荒地
+					TileData level3Tiles[] = {
+						{0,4,WASTELAND_GRASS}, {0,5,WASTELAND_GRASS}, {1,4,WASTELAND_GRASS}, {1,5,WASTELAND_GRASS},
+						{4,21,WASTELAND_GRASS}, {4,22,WASTELAND_GRASS}, {5,21,WASTELAND_GRASS}, {5,22,WASTELAND_GRASS},
+						{10,4,WASTELAND_GRASS}, {10,14,WASTELAND_GRASS}, {11,5,WASTELAND_GRASS}, {12,5,WASTELAND_GRASS},
+						{12,19,WASTELAND_GRASS}, {13,4,WASTELAND_GRASS}, {13,19,WASTELAND_GRASS},
+						{0,20,WASTELAND_TREE}, {3,9,WASTELAND_TREE}, {3,10,WASTELAND_TREE}, {4,0,WASTELAND_TREE},
+						{4,9,WASTELAND_TREE}, {4,10,WASTELAND_TREE}, {5,4,WASTELAND_TREE}, {5,5,WASTELAND_TREE},
+						{7,25,WASTELAND_TREE}, {8,15,WASTELAND_TREE}, {9,0,WASTELAND_TREE}, {9,15,WASTELAND_TREE},
+						{9,20,WASTELAND_TREE}, {9,21,WASTELAND_TREE}, {9,22,WASTELAND_TREE},
+						{0,0,WASTELAND_SHRUB}, {0,13,WASTELAND_SHRUB}, {0,25,WASTELAND_SHRUB}, {1,13,WASTELAND_SHRUB},
+						{2,13,WASTELAND_SHRUB}, {6,4,WASTELAND_SHRUB}, {6,5,WASTELAND_SHRUB}, {7,4,WASTELAND_SHRUB},
+						{7,5,WASTELAND_SHRUB}, {8,18,WASTELAND_SHRUB}, {8,19,WASTELAND_SHRUB}, {9,18,WASTELAND_SHRUB},
+						{9,19,WASTELAND_SHRUB}, {12,24,WASTELAND_SHRUB}, {12,25,WASTELAND_SHRUB}, {15,0,WASTELAND_SHRUB},
+						{15,25,WASTELAND_SHRUB},
+						{3,17,WASTELAND_BOX}, {3,18,WASTELAND_BOX}, {4,17,WASTELAND_BOX}, {4,18,WASTELAND_BOX},
+						{7,11,WASTELAND_BOX}, {7,12,WASTELAND_BOX}, {10,5,WASTELAND_BOX}, {10,8,WASTELAND_BOX},
+						{10,9,WASTELAND_BOX}, {11,4,WASTELAND_BOX}, {12,4,WASTELAND_BOX}, {13,5,WASTELAND_BOX},
+						{14,10,WASTELAND_BOX}, {15,10,WASTELAND_BOX}, {15,18,WASTELAND_BOX}, {15,19,WASTELAND_BOX},
+						{15,20,WASTELAND_BOX},
+						{15,12,WASTELAND_SHRUB},{14,12,WASTELAND_SHRUB}, {13,12,WASTELAND_SHRUB}, {13,13,WASTELAND_SHRUB} ,
+						{13,14,WASTELAND_SHRUB} ,{13,15,WASTELAND_SHRUB} ,{14,15,WASTELAND_SHRUB},{15,15,WASTELAND_SHRUB},
+						{15,14,WALL_BASE} ,{15,13,WALL_BASE} ,{14,14,WALL_BASE},{14,13,WALL_BASE}
+					};
+					initLevel(3, level3Tiles, sizeof(level3Tiles) / sizeof(TileData));
+
+					int enemy3[10][2] = { {1,2}, {2,6}, {4,4}, {7,7}, {9,1}, {11,5}, {14,3}, {17,1}, {22,7}, {24,2} };
+					for (int i = 0; i < 10; i++) {
+						enemiesSpawn[3][i][0] = enemy3[i][0];
+						enemiesSpawn[3][i][1] = enemy3[i][1];
+					}
+					playerSpawn[3][0][0] = 5;
+					playerSpawn[3][0][1] = 15;
+
+					// 第5关：雪地
+					TileData level4Tiles[] = {
+						// 冰块 SNOW_ICE
+						{1,3,SNOW_ICE},  {1,7,SNOW_ICE},
+						{3,11,SNOW_ICE}, {3,18,SNOW_ICE},
+						{4,2,SNOW_ICE},  {4,15,SNOW_ICE},
+						{5,15,SNOW_ICE}, {5,19,SNOW_ICE}, {5,23,SNOW_ICE},
+						{6,11,SNOW_ICE}, {6,18,SNOW_ICE}, {6,26,SNOW_ICE},
+						{8,2,SNOW_ICE},  {8,10,SNOW_ICE}, {8,14,SNOW_ICE},
+						{12,11,SNOW_ICE},{12,14,SNOW_ICE},
+						{13,2,SNOW_ICE}, {13,23,SNOW_ICE},
+						{16,5,SNOW_ICE}, {16,18,SNOW_ICE},
+
+						// 砖块 SNOW_BRICK
+						{1,2,SNOW_BRICK},  {1,6,SNOW_BRICK},  {1,23,SNOW_BRICK}, {1,26,SNOW_BRICK},
+						{3,15,SNOW_BRICK},
+						{4,3,SNOW_BRICK},  {4,7,SNOW_BRICK},  {4,23,SNOW_BRICK}, {4,26,SNOW_BRICK},
+						{5,2,SNOW_BRICK},
+						{6,10,SNOW_BRICK}, {6,14,SNOW_BRICK}, {6,15,SNOW_BRICK}, {6,19,SNOW_BRICK}, {6,22,SNOW_BRICK}, {6,23,SNOW_BRICK},
+						{7,6,SNOW_BRICK},  {7,7,SNOW_BRICK},  {7,15,SNOW_BRICK},
+						{8,11,SNOW_BRICK}, {8,15,SNOW_BRICK},
+						{9,3,SNOW_BRICK},  {9,18,SNOW_BRICK}, {9,19,SNOW_BRICK}, {9,23,SNOW_BRICK},
+						{11,10,SNOW_BRICK},{11,11,SNOW_BRICK},
+						{12,2,SNOW_BRICK}, {12,3,SNOW_BRICK}, {12,6,SNOW_BRICK}, {12,7,SNOW_BRICK}, {12,18,SNOW_BRICK},{12,19,SNOW_BRICK},{12,23,SNOW_BRICK},
+						{13,7,SNOW_BRICK}, {13,11,SNOW_BRICK},{13,22,SNOW_BRICK},
+						{16,6,SNOW_BRICK}, {16,21,SNOW_BRICK},
+
+						// 雪人 SNOW_SNOWMAN
+						{5,3,SNOW_SNOWMAN},  {5,14,SNOW_SNOWMAN}, {5,18,SNOW_SNOWMAN}, {5,22,SNOW_SNOWMAN}, {5,26,SNOW_SNOWMAN},
+						{7,10,SNOW_SNOWMAN}, {7,11,SNOW_SNOWMAN}, {7,14,SNOW_SNOWMAN},
+						{9,2,SNOW_SNOWMAN},  {9,26,SNOW_SNOWMAN},
+						{13,3,SNOW_SNOWMAN}, {13,14,SNOW_SNOWMAN},{13,19,SNOW_SNOWMAN},{13,26,SNOW_SNOWMAN},
+						{16,4,SNOW_SNOWMAN}, {16,7,SNOW_SNOWMAN},
+
+						// 树木 SNOW_TREE
+						{1,22,SNOW_TREE},
+						{3,10,SNOW_TREE}, {3,14,SNOW_TREE}, {3,19,SNOW_TREE},
+						{4,6,SNOW_TREE},  {4,14,SNOW_TREE}, {4,18,SNOW_TREE}, {4,19,SNOW_TREE}, {4,22,SNOW_TREE},
+						{8,3,SNOW_TREE},  {8,6,SNOW_TREE},  {8,7,SNOW_TREE},
+						{9,14,SNOW_TREE}, {9,15,SNOW_TREE}, {9,22,SNOW_TREE},
+						{12,5,SNOW_TREE}, {12,10,SNOW_TREE},{12,15,SNOW_TREE},{12,18,SNOW_TREE},{12,22,SNOW_TREE},{12,26,SNOW_TREE},
+						{13,6,SNOW_TREE}, {13,10,SNOW_TREE},{13,15,SNOW_TREE},
+						{16,3,SNOW_TREE}, {16,10,SNOW_TREE},{16,11,SNOW_TREE},{16,19,SNOW_TREE},{16,20,SNOW_TREE},{16,24,SNOW_TREE},{16,25,SNOW_TREE},{16,26,SNOW_TREE},
+
+						//围墙
+						{15,12,SNOW_BRICK},{14,12,SNOW_BRICK}, {13,12,SNOW_BRICK}, {13,15,SNOW_BRICK} ,
+						{13,13,SNOW_BRICK} ,{13,14,SNOW_BRICK} ,{14,15,SNOW_BRICK},{15,15,SNOW_BRICK},
+						//基地 WALL_BASE
+						{ 15,13,WALL_BASE },{ 15,14,WALL_BASE }, { 14,14,WALL_BASE }, { 14,13,WALL_BASE }
+					};
+					initLevel(4, level4Tiles, sizeof(level4Tiles) / sizeof(TileData));
+
+					int enemy4[10][2] = { {1,2}, {25,2}, {13,2}, {5,5}, {9,5}, {16,5}, {4,9}, {9,9}, {17,8}, {21,8} };
+					for (int i = 0; i < 10; i++) {
+						enemiesSpawn[4][i][0] = enemy4[i][0];
+						enemiesSpawn[4][i][1] = enemy4[i][1];
+					}
+					playerSpawn[4][0][0] = 2;
+					playerSpawn[4][0][1] = 15;
+
+					// 第6关：地牢
+					TileData level5Tiles[] = {
+						{3,3,DARK_STONE}, {3,4,DARK_STONE}, {3,5,DARK_STONE}, {4,3,DARK_STONE},
+						{4,4,DARK_STONE}, {4,5,DARK_STONE}, {7,13,DARK_STONE}, {7,14,DARK_STONE},
+						{8,13,DARK_STONE}, {8,14,DARK_STONE}, {8,5,DARK_STONE}, {8,6,DARK_STONE},
+						{9,5,DARK_STONE}, {9,6,DARK_STONE}, {10,25,DARK_STONE}, {11,0,DARK_STONE},
+						{11,1,DARK_STONE}, {11,24,DARK_STONE}, {11,25,DARK_STONE}, {12,0,DARK_STONE},
+						{12,1,DARK_STONE},
+						{0,11,DARK_IRON}, {0,17,DARK_IRON}, {1,11,DARK_IRON}, {1,17,DARK_IRON},
+						{3,22,DARK_IRON}, {3,23,DARK_IRON}, {3,24,DARK_IRON}, {3,25,DARK_IRON},
+						{5,8,DARK_IRON}, {5,9,DARK_IRON}, {5,13,DARK_IRON}, {6,13,DARK_IRON},
+						{6,22,DARK_IRON}, {7,15,DARK_IRON}, {7,16,DARK_IRON}, {7,22,DARK_IRON},
+						{8,11,DARK_IRON}, {8,12,DARK_IRON}, {9,14,DARK_IRON}, {10,14,DARK_IRON},
+						{10,18,DARK_IRON}, {10,19,DARK_IRON}, {13,19,DARK_IRON}, {13,20,DARK_IRON},
+						{13,21,DARK_IRON}, {14,8,DARK_IRON}, {14,21,DARK_IRON}, {15,8,DARK_IRON},
+						{15,21,DARK_IRON},
+						{15,12,DARK_IRON},{14,12,DARK_IRON}, {13,15,DARK_IRON}, {13,12,DARK_IRON} ,
+						{13,13,DARK_IRON} ,{13,14,DARK_IRON} ,{14,15,DARK_IRON},{15,15,DARK_IRON},
+						{15,14,WALL_BASE} ,{15,13,WALL_BASE} ,{14,14,WALL_BASE},{14,13,WALL_BASE}
+					};
+					initLevel(5, level5Tiles, sizeof(level5Tiles) / sizeof(TileData));
+
+					int enemy5[10][2] = { {5,0}, {14,0}, {22,0}, {11,3}, {19,4}, {1,6}, {24,6}, {8,7}, {11,11}, {24,14} };
+					for (int i = 0; i < 10; i++) {
+						enemiesSpawn[5][i][0] = enemy5[i][0];
+						enemiesSpawn[5][i][1] = enemy5[i][1];
+					}
+					playerSpawn[5][0][0] = 5;
+					playerSpawn[5][0][1] = 15;
+}

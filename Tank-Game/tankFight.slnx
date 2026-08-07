@@ -1,0 +1,7 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="tankFight.vcxproj" Id="514ba028-c8ab-488b-8a93-8911dc398a84" />
+</Solution>
